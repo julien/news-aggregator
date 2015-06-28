@@ -33,6 +33,7 @@ APP.Data = (function() {
     request(storyURL, function(evt) {
       callback(evt.target.response);
     });
+
   }
 
   function getStoryComment(id, callback) {
@@ -42,7 +43,10 @@ APP.Data = (function() {
     request(storyCommentURL, function(evt) {
       callback(evt.target.response);
     });
+
   }
+
+  var requestWorker = new Worker('scripts/request-worker.js');
 
   function request(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -50,6 +54,7 @@ APP.Data = (function() {
     xhr.responseType = 'json';
     xhr.onload = callback;
     xhr.send();
+
   }
 
   return {

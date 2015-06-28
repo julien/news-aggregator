@@ -24,12 +24,6 @@ limitations under the License.
   <meta name="viewport" content="width=device-width">
   <meta name="theme-color" content="#FF6F00">
 
-  <script src="third_party/handlebars-v3.0.0.js"></script>
-  <script>
-  if (typeof window.Intl !== 'undefined') {
-    document.write('<script src="third_party/handlebars-intl.min.js"><\/script>');
-  }
-  </script>
 
   <script id="tmpl-story" type="text/x-handlebars-template">
     <h1 class="story__title">{{ title }}</h1>
@@ -88,6 +82,12 @@ limitations under the License.
       Powered by the <a href="https://github.com/HackerNews/API">Hacker News API</a>
     </footer>
 
+    <script src="third_party/handlebars-v3.0.0.js"></script>
+    <script>
+    if (typeof window.Intl !== 'undefined') {
+      document.write('<script src="third_party/handlebars-intl.min.js"><\/script>');
+    }
+    </script>
     <script src="scripts/namespace.js"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/app.js"></script>
