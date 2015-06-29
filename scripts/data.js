@@ -31,7 +31,7 @@ APP.Data = (function() {
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
     request(storyURL, function(evt) {
-      callback(evt.target.response);
+      callback(evt.target.response, id);
     });
 
   }
@@ -49,12 +49,11 @@ APP.Data = (function() {
   var requestWorker = new Worker('scripts/request-worker.js');
 
   function request(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
-    xhr.onload = callback;
-    xhr.send();
-
+    requestWorker.postMessage({url: url});
+    requestWorker.onmessage = function (e) {
+      var response = e.data.response;
+      callback({target: {response: response}});
+    };
   }
 
   return {
